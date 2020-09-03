@@ -1,5 +1,7 @@
 import React from "react";
 import {connect} from "react-redux"
+import {inc, dec, rnd} from "../actions"
+import {bindActionCreators} from "redux"
 
 const Counter = ({counter, inc, dec, rnd}) => {
     return (
@@ -14,6 +16,15 @@ const Counter = ({counter, inc, dec, rnd}) => {
 }
 const MSTP = (state) => {
     return {counter: state}
-
 }
-export default connect(MSTP)(Counter)
+const MDTP = (dispatch) => {
+    return {
+        inc: () => dispatch(inc()),
+        dec: () => dispatch(dec()),
+        rnd: () => {
+            const randomValue = Math.floor(Math.random() * 10)
+            dispatch(rnd(randomValue))
+        },
+    }
+}
+export default connect(MSTP, MDTP)(Counter)
