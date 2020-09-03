@@ -1,7 +1,6 @@
 import React from "react";
 import {connect} from "react-redux"
 import * as actions from "../actions"
-import {bindActionCreators} from "redux"
 
 const Counter = ({counter, inc, dec, rnd}) => {
     return (
@@ -18,7 +17,4 @@ const MSTP = (state) => {
     return {counter: state}
 }
 
-const MDTP = (dispatch) => {
-    return bindActionCreators(actions, dispatch)
-}
-export default connect(MSTP, MDTP)(Counter)
+export default connect(MSTP, actions)(Counter)
