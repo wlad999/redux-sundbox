@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from "react-redux"
 
 const Counter = ({counter, inc, dec, rnd}) => {
     return (
@@ -11,4 +12,8 @@ const Counter = ({counter, inc, dec, rnd}) => {
     )
 
 }
-export default Counter
+const MSTP = (state) => {
+    return {counter: state}
+
+}
+export default connect(MSTP)(Counter)
